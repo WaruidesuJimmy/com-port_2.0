@@ -38,14 +38,22 @@ router.post('/', function(req, res) {
             console.log( 'port closed', err ) 
             });
       //control value
-      let ideal = 0.45;
+      let ideal1 = 0.45;
+      let ideal2 = 0.3;
+      let ideal3 = 0.15;
 
       //max lambda
-      let lambda = 0.1;
+      let lambda1 = ideal1 * 0.2;
+      let lambda2 = ideal2 * 0.2;
+      let lambda3 = ideal3 * 0.2;
 
       let result = false;
 
-      if(Math.abs(ideal - string) <= lambda)
+      if(Math.abs(ideal1 - string) <= lambda1)
+         result = true;
+      if(Math.abs(ideal2 - string) <= lambda2)
+         result = true;
+      if(Math.abs(ideal3 - string) <= lambda3)
          result = true;
 
       console.log(result);
