@@ -6,35 +6,40 @@ const request = require('request');
 
 router.post('/:num', function(req, res) {
    let num = req.params.num;
+   let name = req.body.name;
    console.log(num);
 
-   const port = new SerialPort('COM6', {
-      baudRate: 9600
+   const port = new SerialPort('COM7', {
+      baudRate: 19200
    }, (err) =>{
       if(err)
          console.log(err);
    });
 
    setTimeout(function () {
-      port.write(num);
-   }, 2000);
+      port.write((num- -1).toString());
+   }, 3000);
 
    port.on('data', (data) => {
-
-      let result = data.toString();
-
+     
+      let result = data.toString()[0]=='d' ? true: false;
+      console.log(result)
+      port.close((err) => { 
+            console.log( 'port closed', err ) 
+            });
       request({
-            url: 'http://localhost/roboto/' + num,
+            url: 'http://192.168.151.57/roboto/' + num,
             method: "POST",
             body: {
-               result: result
+               result: result, 
+               name: name
             },
             json: true
          },
          function (error, response, body) {
-            console.log('body:', body);
-            res.send(body);
+            res.send({result: body});
          });
+         
    });
 });
 

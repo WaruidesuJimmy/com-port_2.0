@@ -5,7 +5,7 @@ const ping = require('ping');
 
 router.post('/', function(req, res) {
 
-   let host = 'googles.com';
+   let host = 'google.com';
     ping.sys.probe(host, isAlive => {
        if(isAlive)
           res.end("1");

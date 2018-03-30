@@ -4,7 +4,7 @@ var router = express.Router();
 /* GET home page. */
 router.get('/', function(req, res, next) {
    var SerialPort = require('serialport');
-   var port = new SerialPort('COM3', {
+   var port = new SerialPort('COM7', {
       baudRate: 9600
    });
    var s = "";

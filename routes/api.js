@@ -4,7 +4,7 @@ const SerialPort = require('serialport');
 const request = require('request');
 
 router.post('/', function(req, res) {
-   const com_port = new SerialPort('COM6', {
+   const com_port = new SerialPort('COM7', {
       baudRate: 9600
    }, (err) =>{
       setTimeout(function () {
